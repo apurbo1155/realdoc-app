@@ -1,0 +1,26 @@
+.document-editor {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.document-editor h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.document-editor textarea {
+    font-family: monospace;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-height: 500px;
+    width: 100%;
+}
+
+.connection-status {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+}
