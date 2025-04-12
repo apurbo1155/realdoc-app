@@ -3,7 +3,7 @@ services:
     name: realdoc-app
     env: node
     buildCommand: npm install && npm run build
-    startCommand: serve -s dist
+    startCommand: serve -s dist --single
     envVars:
       - key: REACT_APP_API_URL
         value: https://realdoc-api.onrender.com
