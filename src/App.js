@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Set the base URL for Axios
 axios.defaults.baseURL = 'https://realdoc-api.onrender.com';
-import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
 import DocumentEditor from './DocumentEditor';
