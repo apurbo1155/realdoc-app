@@ -14,14 +14,15 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.22.1",
-    "webpack": "^5.64.4",
-    "webpack-cli": "^6.0.1"
+    "webpack": "5.82.1",
+    "webpack-cli": "5.1.0"
   },
   "devDependencies": {
-    "babel-loader": "^8.2.3",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^7.1.2",
-    "style-loader": "^4.0.0",
-    "webpack-dev-server": "^4.15.1"
+    "babel-loader": "8.2.3",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-react": "7.16.7",
+    "css-loader": "7.1.2",
+    "style-loader": "4.0.0",
+    "webpack-dev-server": "4.15.1"
   }
 }
