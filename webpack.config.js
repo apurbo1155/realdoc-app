@@ -43,7 +43,10 @@ module.exports = {
     compress: true,
     port: 8086,
     host: '0.0.0.0',
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      index: '/'
+    },
     hot: true,
     allowedHosts: 'all'
   },
