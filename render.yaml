@@ -1,17 +1,8 @@
 services:
   - name: realdoc-app
-    type: web
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port ${PORT}
+    type: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
     envVars:
-      - key: MONGODB_URI
-        fromGroup: mongodb
-      - key: PORT
-        value: 8000
-      - key: JWT_SECRET
-        generateValue: true
-      - key: JWT_ALGORITHM
-        value: HS256
-      - key: JWT_EXPIRE_MINUTES
-        value: 1440
+      - key: REACT_APP_API_URL
+        value: https://realdoc-api.onrender.com
