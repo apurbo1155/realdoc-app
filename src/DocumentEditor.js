@@ -21,7 +21,7 @@ function DocumentEditor() {
             try {
                 console.log(`Loading document ${docId}, attempt ${retryCount + 1}`);
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`http://localhost:8004/api/documents/${docId}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/documents/${docId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     },
@@ -54,7 +54,9 @@ function DocumentEditor() {
 
         // Connect to WebSocket with better error handling
         const token = localStorage.getItem('token');
-        ws.current = new WebSocket(`ws://localhost:8004/ws/${docId}?token=${token}`);
+        // Use relative WebSocket URL that will be proxied by webpack-dev-server
+        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        ws.current = new WebSocket(`${wsProtocol}//${window.location.host}/ws/${docId}?token=${token}`);
         
         ws.current.onopen = () => {
             setConnected(true);
@@ -109,7 +111,7 @@ function DocumentEditor() {
                     console.log('Auto-saving document...');
                     const token = localStorage.getItem('token');
                     const response = await axios.post(
-                        `http://localhost:8004/api/documents/${docId}`, 
+                        `/api/documents/${docId}`, 
                         { content },
                         {
                             headers: {
@@ -138,7 +140,7 @@ function DocumentEditor() {
             // Save to server
             const token = localStorage.getItem('token');
             await axios.post(
-                `http://localhost:8004/api/documents/${docId}`, 
+                `/api/documents/${docId}`, 
                 { content: newContent },
                 {
                     headers: {

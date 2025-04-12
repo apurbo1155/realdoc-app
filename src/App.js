@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios'; 
 
 // Set the base URL for Axios
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' 
-  ? 'https://realdoc-api.onrender.com/api' 
-  : 'http://localhost:8001/api';
+axios.defaults.baseURL = 'https://realdoc-api.onrender.com';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
@@ -46,7 +44,7 @@ function App() {
   }, []);
 
     return (
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router>
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />

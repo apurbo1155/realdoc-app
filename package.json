@@ -4,10 +4,11 @@
   "description": "Real-time collaborative document editor frontend",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open",
-    "dev": "webpack serve --mode development",
+    "start": "serve -s dist",
+    "dev": "webpack serve --mode development --open",
     "prebuild": "npm install",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "serve": "webpack serve --mode development"
   },
   "dependencies": {
     "@babel/core": "7.16.12",

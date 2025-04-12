@@ -1,8 +1,11 @@
 services:
-  - name: realdoc-app
-    type: static
+  - type: web
+    name: realdoc-app
+    env: node
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    startCommand: serve -s dist
     envVars:
       - key: REACT_APP_API_URL
-        value: https://realdoc-api.onrender.com
+        value: https://your-render-backend-url.onrender.com
+      - key: REACT_APP_WS_URL
+        value: wss://your-render-backend-url.onrender.com

@@ -23,16 +23,40 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
             raise HTTPException(status_code=401, detail="Invalid token")
         return response.json()
 
+from fastapi import Depends, HTTPException
+from app.db import get_db
+from pydantic import BaseModel
+
+class Document(BaseModel):
+    content: str
+
 @app.get("/")
 async def root():
     return {
         "message": "Welcome to RealDoc API",
         "endpoints": {
+            "documents": "/api/documents/{doc_id}",
             "websocket": "/ws/{document_id}",
             "docs": "/docs",
             "redoc": "/redoc"
         }
     }
+
+@app.get("/api/documents/{doc_id}")
+async def get_document(doc_id: str, db=Depends(get_db)):
+    document = await db.documents.find_one({"_id": doc_id})
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+    return document
+
+@app.post("/api/documents/{doc_id}")
+async def save_document(doc_id: str, document: Document, db=Depends(get_db)):
+    await db.documents.update_one(
+        {"_id": doc_id},
+        {"$set": {"content": document.content}},
+        upsert=True
+    )
+    return {"status": "success"}
 
 # CORS setup
 app.add_middleware(
