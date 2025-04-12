@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Set the base URL for Axios
 axios.defaults.baseURL = 'https://realdoc-api.onrender.com';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
 import DocumentEditor from './DocumentEditor';
@@ -44,11 +44,15 @@ function App() {
   }, []);
 
     return (
-        <Router basename="/">
+        <Router>
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/documents/:docId" element={<DocumentEditor />} />
+                <Route path="/login" element={localStorage.getItem('token') ? <Navigate to="/" /> : <Login />} />
+                <Route path="/signup" element={localStorage.getItem('token') ? <Navigate to="/" /> : <Signup />} />
+                <Route path="/documents/:docId" element={
+                    <ProtectedRoute>
+                        <DocumentEditor />
+                    </ProtectedRoute>
+                } />
                 <Route path="/" element={
                     <div>
                         <h1>Welcome to the RealDoc Editor</h1>

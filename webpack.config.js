@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: 'main.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     clean: true
@@ -43,11 +43,13 @@ module.exports = {
     compress: true,
     port: 8086,
     host: '0.0.0.0',
-    historyApiFallback: {
-      disableDotRule: true,
-      index: '/'
-    },
+    historyApiFallback: true,
     hot: true,
     allowedHosts: 'all'
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
 };

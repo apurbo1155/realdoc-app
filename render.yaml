@@ -10,6 +10,9 @@ services:
       - key: REACT_APP_WS_URL
         value: wss://realdoc-api.onrender.com
     routes:
-      - src: /.*
+      - src: /(.*)
         dest: /index.html
         status: 200
+    headers:
+      - key: Cache-Control
+        value: no-cache
