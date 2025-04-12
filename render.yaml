@@ -6,9 +6,9 @@ services:
     startCommand: serve -s dist
     envVars:
       - key: REACT_APP_API_URL
-        value: https://your-render-backend-url.onrender.com
+        value: https://realdoc-api.onrender.com
       - key: REACT_APP_WS_URL
-        value: wss://your-render-backend-url.onrender.com
+        value: wss://realdoc-api.onrender.com
     routes:
       - src: /.*
         dest: /index.html
