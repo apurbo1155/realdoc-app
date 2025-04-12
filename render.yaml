@@ -10,5 +10,6 @@ services:
       - key: REACT_APP_WS_URL
         value: wss://your-render-backend-url.onrender.com
     routes:
-      - src: /*
+      - src: /.*
         dest: /index.html
+        status: 200
