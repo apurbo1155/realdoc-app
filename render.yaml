@@ -1,7 +1,7 @@
 services:
   - name: realdoc-app
     type: static
-    buildCommand: npm install && npm run build
+    buildCommand: npm install -D webpack-cli && npm install && npm run build
     staticPublishPath: ./dist
     envVars:
       - key: REACT_APP_API_URL
