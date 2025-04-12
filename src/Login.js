@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -11,13 +11,14 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/auth/login', {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
                 username,
                 password
             });
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('username', response.data.username);
-            window.location.href = `/documents/${Date.now()}`;
+            const navigate = useNavigate();
+            navigate(`/documents/${Date.now()}`);
         } catch (err) {
             setError('Invalid credentials');
         }
